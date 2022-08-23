@@ -1,0 +1,34 @@
+https://www.cloudskillsboost.google/games/2794/labs/16752
+
+gcloud auth list
+
+gcloud config list project
+	
+
+git clone \
+   https://github.com/GoogleCloudPlatform/data-science-on-gcp/
+
+cd data-science-on-gcp
+
+mkdir data
+cd data
+
+curl https://www.bts.dot.gov/sites/bts.dot.gov/files/docs/legacy/additional-attachment-files/ONTIME.TD.201501.REL02.04APR2015.zip --output data.zip
+
+unzip data.zip
+head ontime.td.201501.asc
+
+cat ../02_ingest/ingest_from_crsbucket.sh
+
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+gsutil mb gs://${PROJECT_ID}-ml
+
+bash ../02_ingest/ingest_from_crsbucket.sh ${PROJECT_ID}-ml
+
+cat ../02_ingest/bqload.sh
+
+bash ../02_ingest/bqload.sh ${PROJECT_ID}-ml 2015
+
+
+
+qwiklabs-gcp-03-5942994a0f10

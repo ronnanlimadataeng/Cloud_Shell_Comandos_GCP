@@ -1,0 +1,156 @@
+gcloud auth list
+
+gcloud config list project
+
+gcloud iam list-testable-permissions //cloudresourcemanager.googleapis.com/projects/$DEVSHELL_PROJECT_ID
+
+gcloud iam roles describe roles/editor
+
+gcloud iam list-grantable-roles //cloudresourcemanager.googleapis.com/projects/$DEVSHELL_PROJECT_ID
+
+YAML:
+
+title: [ROLE_TITLE]
+description: [ROLE_DESCRIPTION]
+stage: [LAUNCH_STAGE]
+includedPermissions:
+- [PERMISSION_1]
+- [PERMISSION_2]
+
+nano role-definition.yaml
+
+title: "Role Editor"
+description: "Edit access for App Versions"
+stage: "ALPHA"
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+
+gcloud iam roles create editor --project $DEVSHELL_PROJECT_ID \
+--file role-definition.yaml
+
+gcloud iam roles create viewer --project $DEVSHELL_PROJECT_ID \
+--title "Role Viewer" --description "Custom role description." \
+--permissions compute.instances.get,compute.instances.list --stage ALPHA
+
+gcloud iam roles list --project $DEVSHELL_PROJECT_ID
+
+gcloud iam roles list
+
+gcloud iam roles describe editor --project $DEVSHELL_PROJECT_ID
+
+nano new-role-definition.yaml
+
+nano new-role-definition.yaml
+description: Edit access for App Versions
+etag: BwXiGzB-D14=
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+- storage.buckets.get
+- storage.buckets.list
+name: projects/qwiklabs-gcp-02-80d2094f9a94/roles/editor
+stage: ALPHA
+title: Role Editor
+
+description: Edit access for App Versions
+etag: BwVxIAbRq_I=
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+- storage.buckets.get
+- storage.buckets.list
+name: projects/[PROJECT_ID]/roles/editor
+stage: ALPHA
+title: Role Editor
+
+gcloud iam roles update editor --project $DEVSHELL_PROJECT_ID \
+--file new-role-definition.yaml
+
+description: Edit access for App Versions
+etag: BwVxIBjfN3M=
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+- storage.buckets.get
+- storage.buckets.list
+name: projects/[PROJECT_ID]/roles/editor
+stage: ALPHA
+title: Role Editor
+
+gcloud iam roles update viewer --project $DEVSHELL_PROJECT_ID \
+--add-permissions storage.buckets.get,storage.buckets.list
+
+description: Custom role description.
+etag: BwVxLi4wTvk=
+includedPermissions:
+- compute.instances.get
+- compute.instances.list
+- storage.buckets.get
+- storage.buckets.list
+name: projects/[PROJECT_ID]/roles/viewer
+stage: ALPHA
+title: Role Viewer
+
+gcloud iam roles update viewer --project $DEVSHELL_PROJECT_ID \
+--stage DISABLED
+
+description: Custom role description.
+etag: BwVxLkIYHrQ=
+includedPermissions:
+- compute.instances.get
+- compute.instances.list
+- storage.buckets.get
+- storage.buckets.list
+name: projects/[PROJECT_ID]/roles/viewer
+stage: DISABLED
+title: Role Viewer
+
+gcloud iam roles delete viewer --project $DEVSHELL_PROJECT_ID
+
+description: Custom role description.
+etag: BwVxLkf_epw=
+includedPermissions:
+- compute.instances.get
+- compute.instances.list
+- storage.buckets.get
+- storage.buckets.list
+name: projects/[PROJECT_ID]/roles/viewer
+stage: DISABLED
+title: Role Viewer
+
+gcloud iam roles undelete viewer --project $DEVSHELL_PROJECT_ID
+
+gcloud iam roles list --project <PROJECTID>
+
+gcloud iam roles describe [ROLE_ID] --project $DEVSHELL_PROJECT_ID
+
+description: Edit access for App Versions
+etag: BwVxIAbRq_I=
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+- storage.buckets.get
+- storage.buckets.list
+name: projects/qwiklabs-gcp-03-eafe67f141ce/roles/editor
+stage: ALPHA
+title: Role Editor
+
+
+gcloud iam roles describe roles/viewer
+
+gcloud iam roles describe editor --project $DEVSHELL_PROJECT_ID
+
+description: Edit access for App Versions
+etag: BwXh-E0MHC0=
+includedPermissions:
+- appengine.versions.create
+- appengine.versions.delete
+- storage.buckets.get
+- storage.buckets.list
+name: projects/qwiklabs-gcp-03-bf77b7c9b949/roles/editor
+stage: ALPHA
+title: Role Editor
+
+gcloud iam roles update editor  --project $DEVSHELL_PROJECT_ID \
+--file new-role-definition.yaml
